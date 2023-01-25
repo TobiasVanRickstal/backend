@@ -5,7 +5,10 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 // cors provides Express middleware to enable CORS with various options.
 
+const path = __dirname + '/app/views/';
 const app = express();
+
+app.use(express.static(path));
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -21,7 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Tobias application." });
+  // res.json({ message: "Welcome to Tobias application." });
+  res.sendFile(path + "index.html");
 });
 
 // In development, you may need to drop existing tables and re-sync database. 
@@ -32,6 +36,8 @@ db.sequelize.sync({ force: true }).then(() => {
 });
 
 require("./app/routes/tutorial.routes")(app);
+require("./app/routes/docent.routes")(app);
+require("./app/routes/aanbod.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
