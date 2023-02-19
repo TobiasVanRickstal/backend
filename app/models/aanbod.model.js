@@ -36,11 +36,17 @@ module.exports = (sequelize, Sequelize) => {
       solicitanten: {
         type: Sequelize.INTEGER
       },
+      periodes: {
+        type: Sequelize.STRING
+      },
       prijs: {
         type: Sequelize.INTEGER
       },
       serie: {
         type: Sequelize.BOOLEAN
+      },
+      difficulty: {
+        type: Sequelize.INTEGER
       },
     });
     
