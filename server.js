@@ -39,6 +39,7 @@ const db = require("./app/models");
 
 require("./app/routes/docent.routes")(app);
 require("./app/routes/aanbod.routes")(app);
+require("./app/routes/bedrijf.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
