@@ -38,7 +38,7 @@ const db = require("./app/models");
 // });
 
 require("./app/routes/docent.routes")(app);
-require("./app/routes/aanbod.routes")(app);
+require("./app/routes/vraag.routes")(app);
 require("./app/routes/werknemer.routes")(app);
 require("./app/routes/bedrijf.routes")(app);
 

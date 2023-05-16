@@ -1,8 +1,8 @@
 const db = require("../models");
-const Aanbod = db.aanbods;
+const Vraag = db.vragen;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new aanbod
+// Create and Save a new vraag
 exports.create = (req, res) => {
    // Validate request
    if (!req.body.naam) {
@@ -12,8 +12,8 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a aanbod
-  const aanbod = {
+  // Create a vraag
+  const vraag = {
     naam: req.body.naam,
     docent: req.body.docent,
     type: req.body.type,
@@ -30,134 +30,134 @@ exports.create = (req, res) => {
     serie: req.body.serie ? req.body.serie : false,
   };
 
-  // Save aanbod in the database
-  Aanbod.create(aanbod)
+  // Save vraag in the database
+  Vraag.create(vraag)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the aanbod."
+          err.message || "Some error occurred while creating the vraag."
       });
     });
 };
 
-// Retrieve all aanbods from the database.
+// Retrieve all vragen from the database.
 exports.findAll = (req, res) => {
     const naam = req.query.naam;
     var condition = naam ? { naam: { [Op.like]: `%${naam}%` } } : null;
   
-    Aanbod.findAll({ where: condition })
+    Vraag.findAll({ where: condition })
       .then(data => {
         res.send(data);
       })
       .catch(err => {
         res.status(500).send({
           message:
-            err.message || "Some error occurred while retrieving Aanbods."
+            err.message || "Some error occurred while retrieving Vragen."
         });
       });
 };
 
-// Find a single Aanbod with an id
+// Find a single Vraag with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Aanbod.findByPk(id)
+    Vraag.findByPk(id)
       .then(data => {
         if (data) {
           res.send(data);
         } else {
           res.status(404).send({
-            message: `Cannot find Aanbod with id=${id}.`
+            message: `Cannot find Vraag with id=${id}.`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error retrieving Aanbod with id=" + id
+          message: "Error retrieving Vraag with id=" + id
         });
       });
 };
 
-// Update a Aanbod by the id in the request
+// Update a Vraag by the id in the request
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Aanbod.update(req.body, {
+    Vraag.update(req.body, {
       where: { id: id }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "Aanbod was updated successfully."
+            message: "Vraag was updated successfully."
           });
         } else {
           res.send({
-            message: `Cannot update Aanbod with id=${id}. Maybe Aanbod was not found or req.body is empty!`
+            message: `Cannot update Vraag with id=${id}. Maybe Vraag was not found or req.body is empty!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating Aanbod with id=" + id
+          message: "Error updating Vraag with id=" + id
         });
       });
 };
 
-// Delete a Aanbod with the specified id in the request
+// Delete a Vraag with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Aanbod.destroy({
+    Vraag.destroy({
       where: { id: id }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "Aanbod was deleted successfully!"
+            message: "Vraag was deleted successfully!"
           });
         } else {
           res.send({
-            message: `Cannot delete Aanbod with id=${id}. Maybe Aanbod was not found!`
+            message: `Cannot delete Vraag with id=${id}. Maybe Vraag was not found!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete Aanbod with id=" + id
+          message: "Could not delete Vraag with id=" + id
         });
       });
 };
 
-// Delete all Aanbods from the database.
+// Delete all Vragen from the database.
 exports.deleteAll = (req, res) => {
-    Aanbod.destroy({
+    Vraag.destroy({
         where: {},
         truncate: false
       })
         .then(nums => {
-          res.send({ message: `${nums} Aanbods were deleted successfully!` });
+          res.send({ message: `${nums} Vragen were deleted successfully!` });
         })
         .catch(err => {
           res.status(500).send({
             message:
-              err.message || "Some error occurred while removing all Aanbods."
+              err.message || "Some error occurred while removing all Vragen."
           });
         });
 };
 
-// Find all published Aanbods
+// Find all published Vragen
 exports.findAllByDocentId = (req, res) => {
-    Aanbod.findAll({ where: { docent: id } })
+    Vraag.findAll({ where: { docent: id } })
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving Aanbods."
+          err.message || "Some error occurred while retrieving Vragen."
       });
     });
 };

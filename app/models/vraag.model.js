@@ -1,7 +1,7 @@
 // const docentModel = require("./docent.model");
 
 module.exports = (sequelize, Sequelize) => {
-    const Aanbod = sequelize.define("aanbod", {
+    const Vraag = sequelize.define("vraag", {
       naam: {
         type: Sequelize.STRING
       },
@@ -50,7 +50,7 @@ module.exports = (sequelize, Sequelize) => {
       },
     });
     
-    // Docent.hasMany(Aanbod);
+    // Docent.hasMany(Vraag);
 
-    return Aanbod;
+    return Vraag;
   };

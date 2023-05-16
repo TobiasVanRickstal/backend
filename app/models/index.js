@@ -20,7 +20,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.docents = require("./docent.model.js")(sequelize, Sequelize);
-db.aanbods = require("./aanbod.model.js")(sequelize, Sequelize);
+db.vragen = require("./vraag.model.js")(sequelize, Sequelize);
 db.bedrijven = require("./bedrijf.model.js")(sequelize, Sequelize);
 db.werknemers = require("./werknemer.model.js")(sequelize, Sequelize);
 
