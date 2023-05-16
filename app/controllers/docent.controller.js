@@ -15,7 +15,7 @@ exports.create = (req, res) => {
   // Create a docent
   const docent = {
     naam: req.body.naam,
-    mail: req.body.mail,
+    email: req.body.email,
     password: req.body.password,
     admin: req.body.admin ? req.body.admin : false,
     extern: req.body.extern ? req.body.extern : false
@@ -36,8 +36,8 @@ exports.create = (req, res) => {
 
 // Retrieve all docents from the database.
 exports.findAll = (req, res) => {
-    const naam = req.query.naam;
-    var condition = naam ? { naam: { [Op.like]: `%${naam}%` } } : null;
+    const email = req.query.email;
+    var condition = email ? { email: { [Op.like]: `%${email}%` } } : null;
   
     Docent.findAll({ where: condition })
       .then(data => {
@@ -155,6 +155,18 @@ exports.findAllAdmin = (req, res) => {
 
 exports.findAllExtern = (req, res) => {
     Docent.findAll({ where: { extern: true } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Docents."
+      });
+    });
+};
+exports.findByEmail = (req, res) => {
+    Docent.findAll({ where: email ? { email: { [Op.like]: `%${email}%` } } : null })
     .then(data => {
       res.send(data);
     })

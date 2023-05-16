@@ -13,6 +13,8 @@ module.exports = app => {
     router.get("/admin", docents.findAllAdmin);
 
     router.get("/extern", docents.findAllExtern);
+
+    router.get("/email", docents.findByEmail);
   
     // Retrieve a single Tutorial with id
     router.get("/:id", docents.findOne);
