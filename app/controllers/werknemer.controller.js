@@ -14,21 +14,12 @@ exports.create = (req, res) => {
   }
 
   // Create a werknemer
-  const werknemer = {
+  const docent = {
     naam: req.body.naam,
-    docent: req.body.docent,
-    type: req.body.type,
-    topic: req.body.topic,
-    informatie: req.body.informatie,
-    status: req.body.status,
-    vak: req.body.vak,
-    fase: req.body.fase,
-    periodes: req.body.periodes,
-    difficulty: req.body.difficulty,
-    views: req.body.views,
-    solicitanten: req.body.solicitanten,
-    prijs: req.body.prijs,
-    serie: req.body.serie ? req.body.serie : false,
+    email: req.body.email,
+    password: req.body.password,
+    admin: req.body.admin ? req.body.admin : false,
+    extern: req.body.extern ? req.body.extern : false
   };
 
   // Save werknemer in the database

@@ -1,28 +1,29 @@
 module.exports = app => {
-    const vragen = require("../controllers/vraag.controller.js");
+    const vraagController = require('../controllers/vraag.controller');
   
-    var router = require("express").Router();
+    const router = require("express").Router();
   
-    // Create a new Tutorial
-    router.post("/", vragen.create);
+    // Create a new vraag
+    router.post("/vragen", vraagController.create);
   
     // Retrieve all vragen
-    router.get("/", vragen.findAll);
+    router.get("/vragen", vraagController.findAll);
   
-    // Retrieve all published vragen
-    // router.get("/vraag-docent/:id", vragen.findAllByDocentId);
+    // Retrieve a single vraag by id
+    router.get("/vragen/:id", vraagController.findOne);
   
-    // Retrieve a single Tutorial with id
-    router.get("/:id", vragen.findOne);
+    // Update a vraag by id
+    router.put("/vragen/:id", vraagController.update);
   
-    // Update a Tutorial with id
-    router.put("/:id", vragen.update);
-  
-    // Delete a Tutorial with id
-    router.delete("/:id", vragen.delete);
+    // Delete a vraag by id
+    router.delete("/vragen/:id", vraagController.delete);
   
     // Delete all vragen
-    router.delete("/", vragen.deleteAll);
+    router.delete("/vragen", vraagController.deleteAll);
   
-    app.use('/api/vragen', router);
+    // Retrieve all vragen by docentId
+    router.get("/docenten/:id/vragen", vraagController.findAllByDocentId);
+  
+    app.use(router);
   };
+  

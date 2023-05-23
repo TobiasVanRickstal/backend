@@ -71,6 +71,19 @@ exports.findOne = (req, res) => {
         });
       });
 };
+exports.findOneWithVragen = (req, res) => {
+  const id = req.params.id;
+
+  Docent.findByPk(id, { include: "vragen" })
+    .then((docent) => {
+      res.send(docent);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error retrieving docent with id=" + id,
+      });
+    });
+};
 
 // Update a Docent by the id in the request
 exports.update = (req, res) => {
