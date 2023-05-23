@@ -23,7 +23,7 @@ module.exports = (sequelize, Sequelize) => {
       },
     });
     
-    // Docent.hasMany(Aanbod);
+    // Docent.hasMany(Vraag);
 
     return Werknemer;
   };

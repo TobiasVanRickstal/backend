@@ -20,8 +20,14 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.docents = require("./docent.model.js")(sequelize, Sequelize);
-db.aanbods = require("./aanbod.model.js")(sequelize, Sequelize);
+db.vragen = require("./vraag.model.js")(sequelize, Sequelize);
 db.bedrijven = require("./bedrijf.model.js")(sequelize, Sequelize);
 db.werknemers = require("./werknemer.model.js")(sequelize, Sequelize);
+
+const Vraag = require("./vraag.model");
+const Docent = require("./docent.model");
+// Define associations between models
+db.docents.hasMany(db.vragen, { foreignKey: "docentId", as: "vragen" });
+db.vragen.belongsTo(db.docents, { foreignKey: "docentId", as: "docent" });
 
 module.exports = db;

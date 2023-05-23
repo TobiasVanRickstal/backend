@@ -13,6 +13,12 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.BOOLEAN
       }
     });
+    Docent.associate = (models) => {
+      Docent.hasMany(models.Vraag, {
+        foreignKey: 'docentId',
+        as: 'vragen',
+      });
+    };
   
     return Docent;
   };

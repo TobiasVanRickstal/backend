@@ -40,7 +40,11 @@ exports.create = (req, res) => {
     });
 };
 
+<<<<<<< HEAD
 // Retrieve all vraags from the database.
+=======
+// Retrieve all vragen from the database.
+>>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
 exports.findAll = (req, res) => {
   const naam = req.query.naam;
   const condition = naam ? { naam: { [Op.like]: `%${naam}%` } } : null;
@@ -75,7 +79,11 @@ exports.findAll = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
+<<<<<<< HEAD
         message: err.message || "Some error occurred while retrieving Vraags."
+=======
+        message: err.message || "Some error occurred while retrieving Vragen."
+>>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
       });
     });
 };
@@ -174,23 +182,39 @@ exports.delete = (req, res) => {
     });
 };
 
+<<<<<<< HEAD
 // Delete all Vraags from the database.
+=======
+// Delete all Vragen from the database.
+>>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
 exports.deleteAll = (req, res) => {
   Vraag.destroy({
     where: {},
     truncate: false
   })
     .then(nums => {
+<<<<<<< HEAD
       res.send({ message: `${nums} Vraags were deleted successfully!` });
     })
     .catch(err => {
       res.status(500).send({
         message: err.message || "Some error occurred while removing all Vraags."
+=======
+      res.send({ message: `${nums} Vragen were deleted successfully!` });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while removing all Vragen."
+>>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
       });
     });
 };
 
+<<<<<<< HEAD
 // Find all published Vraags by docentId
+=======
+// Find all published Vragen by docentId
+>>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
 exports.findAllByDocentId = (req, res) => {
   const docentId = req.params.id;
 
@@ -224,7 +248,11 @@ exports.findAllByDocentId = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
+<<<<<<< HEAD
         message: err.message || "Some error occurred while retrieving Vraags."
+=======
+        message: err.message || "Some error occurred while retrieving Vragen."
+>>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
       });
     });
 };
