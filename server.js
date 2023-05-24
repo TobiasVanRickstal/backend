@@ -37,6 +37,19 @@ const db = require("./app/models");
 //   console.log("Drop and re-sync db.");
 // });
 
+// db.sequelize.query('DROP TABLE IF EXISTS bedrijfs')
+//   .then(() => {
+//     return db.sequelize.sync({ alter: true });
+//   })
+//   .then(() => {
+//     console.log("Dropped and re-synced werknemers table.");
+//   })
+//   .catch((error) => {
+//     console.error("Error dropping and re-syncing werknemers table:", error);
+//   });
+
+
+
 require("./app/routes/docent.routes")(app);
 require("./app/routes/vraag.routes")(app);
 require("./app/routes/werknemer.routes")(app);

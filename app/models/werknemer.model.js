@@ -23,7 +23,14 @@ module.exports = (sequelize, Sequelize) => {
       },
     });
     
-    // Docent.hasMany(Vraag);
+    Werknemer.associate = (models) => {
+      Werknemer.belongsTo(models.Bedrijf, {
+        foreignKey: {
+          name: 'bedrijfId',
+          as: "bedrijf"
+        }
+      });
+    };
 
     return Werknemer;
   };

@@ -1,6 +1,7 @@
 
 const db = require("../models");
 const Werknemer = db.werknemers;
+const Bedrijf = db.bedrijven
 const Op = db.Sequelize.Op;
 
 // Create and Save a new werknemer
@@ -14,12 +15,13 @@ exports.create = (req, res) => {
   }
 
   // Create a werknemer
-  const docent = {
+  const werknemer = {
     naam: req.body.naam,
     email: req.body.email,
     password: req.body.password,
     admin: req.body.admin ? req.body.admin : false,
-    extern: req.body.extern ? req.body.extern : false
+    extern: req.body.extern ? req.body.extern : false,
+    bedrijfId: req.body.bedrijfId
   };
 
   // Save werknemer in the database
@@ -40,7 +42,16 @@ exports.findAll = (req, res) => {
     const naam = req.query.naam;
     var condition = naam ? { naam: { [Op.like]: `%${naam}%` } } : null;
   
-    Werknemer.findAll({ where: condition })
+    Werknemer.findAll({
+      where: condition,
+      include: [
+        {
+          model: Bedrijf,
+          as: "bedrijf",
+          attributes: ["id",  "naam"]
+        }
+      ]
+    })
       .then(data => {
         res.send(data);
       })
@@ -56,7 +67,16 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Werknemer.findByPk(id)
+    Werknemer.findByPk(id,{
+      where: condition,
+      include: [
+        {
+          model: Bedrijf,
+          as: "bedrijf",
+          attributes: ["id",  "naam"]
+        }
+      ]
+    })
       .then(data => {
         if (data) {
           res.send(data);
@@ -140,17 +160,25 @@ exports.deleteAll = (req, res) => {
         });
 };
 
-// Find all published Werknemers
-exports.findAllByDocentId = (req, res) => {
-    Werknemer.findAll({ where: { docent: id } })
+// Find all Werknemers of a specific bedrijf
+exports.findAllByBedrijfId = (req, res) => {
+  const bedrijfId = req.params.bedrijfId;
+
+  Werknemer.findAll({
+    where: { bedrijfId: bedrijfId }, 
+    include: [
+    {
+      model: Bedrijf,
+      as: "bedrijf",
+      attributes: ["id",  "naam"]
+    }
+  ]})
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving Werknemers."
+        message: err.message || "Some error occurred while retrieving Werknemers."
       });
     });
 };
-

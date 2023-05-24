@@ -27,14 +27,18 @@ db.types = require("./type.model.js")(sequelize, Sequelize);
 db.topics = require("./topic.model.js")(sequelize, Sequelize);
 db.vaks = require("./vak.model.js")(sequelize, Sequelize);
 
-const Vraag = require("./vraag.model");
-const Docent = require("./docent.model");
-const Type = require("./type.model");
-const Topic = require("./topic.model");
-const Vak = require("./vak.model");
+// const Vraag = require("./vraag.model");
+// const Docent = require("./docent.model");
+// const Type = require("./type.model");
+// const Topic = require("./topic.model");
+// const Vak = require("./vak.model");
+
 // Define associations between models
 db.docents.hasMany(db.vragen, { foreignKey: "docentId", as: "vragen" });
 db.vragen.belongsTo(db.docents, { foreignKey: "docentId", as: "docent" });
+
+db.bedrijven.hasMany(db.werknemers, { foreignKey: "bedrijfId", as: "werknemers" });
+db.werknemers.belongsTo(db.bedrijven, { foreignKey: "bedrijfId", as: "bedrijf" });
 
 db.vragen.belongsTo(db.types, { foreignKey: "typeId", as: "type" });
 db.types.hasMany(db.vragen, { foreignKey: "typeId", as: "vragen" });
