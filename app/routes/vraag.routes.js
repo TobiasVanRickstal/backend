@@ -1,51 +1,29 @@
 module.exports = app => {
-    const vraagController = require('../controllers/vraag.controller');
+    const vragen = require('../controllers/vraag.controller.js');
   
     const router = require("express").Router();
   
     // Create a new vraag
-<<<<<<< HEAD
-    router.post("/vraags", vraagController.create);
-  
-    // Retrieve all vraags
-    router.get("/vraags", vraagController.findAll);
-  
-    // Retrieve a single vraag by id
-    router.get("/vraags/:id", vraagController.findOne);
-  
-    // Update a vraag by id
-    router.put("/vraags/:id", vraagController.update);
-  
-    // Delete a vraag by id
-    router.delete("/vraags/:id", vraagController.delete);
-  
-    // Delete all vraags
-    router.delete("/vraags", vraagController.deleteAll);
-  
-    // Retrieve all vraags by docentId
-    router.get("/docenten/:id/vraags", vraagController.findAllByDocentId);
-=======
-    router.post("/vragen", vraagController.create);
+    router.post("/", vragen.create);
   
     // Retrieve all vragen
-    router.get("/vragen", vraagController.findAll);
+    router.get("/", vragen.findAll);
   
     // Retrieve a single vraag by id
-    router.get("/vragen/:id", vraagController.findOne);
+    router.get("/:id", vragen.findOne);
   
     // Update a vraag by id
-    router.put("/vragen/:id", vraagController.update);
+    router.put("/:id", vragen.update);
   
     // Delete a vraag by id
-    router.delete("/vragen/:id", vraagController.delete);
+    router.delete("/:id", vragen.delete);
   
     // Delete all vragen
-    router.delete("/vragen", vraagController.deleteAll);
+    router.delete("/", vragen.deleteAll);
   
     // Retrieve all vragen by docentId
-    router.get("/docenten/:id/vragen", vraagController.findAllByDocentId);
->>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
+    router.get("/docenten/:id/vragen", vragen.findAllByDocentId);
   
-    app.use(router);
+    app.use('/api/vragen', router);
   };
   

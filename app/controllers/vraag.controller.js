@@ -1,4 +1,10 @@
-const { Vraag, Docent, Op } = require('../models');
+const db = require("../models");
+const Vraag = db.vragen;
+const Docent = db.docents;
+const Topic = db.topics;
+const Type = db.types;
+const Vak = db.vaks;
+const Op = db.Sequelize.Op;
 
 // Create and Save a new vraag
 exports.create = (req, res) => {
@@ -18,7 +24,7 @@ exports.create = (req, res) => {
     topicId: req.body.topicId,
     informatie: req.body.informatie,
     status: req.body.status,
-    vakId: req.body.vakId, // Updated field name
+    vakId: req.body.vakId, // Updated field naam
     fase: req.body.fase,
     periodes: req.body.periodes,
     difficulty: req.body.difficulty,
@@ -40,50 +46,44 @@ exports.create = (req, res) => {
     });
 };
 
-<<<<<<< HEAD
-// Retrieve all vraags from the database.
-=======
 // Retrieve all vragen from the database.
->>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
 exports.findAll = (req, res) => {
   const naam = req.query.naam;
   const condition = naam ? { naam: { [Op.like]: `%${naam}%` } } : null;
 
-  Vraag.findAll({ 
+  Vraag.findAll(
+    { 
     where: condition,
     include: [
       {
         model: Docent,
-        as: 'docentData',
-        attributes: ['id', 'name']
+        as: 'docent',
+        attributes: ['id', 'naam']
       },
       {
         model: Type,
-        as: 'typeData',
-        attributes: ['id', 'name']
+        as: 'type',
+        attributes: ['id', 'naam']
       },
       {
         model: Topic,
-        as: 'topicData',
-        attributes: ['id', 'name']
+        as: 'topic',
+        attributes: ['id', 'naam']
       },
       {
         model: Vak,
-        as: 'vakData',
-        attributes: ['id', 'name']
+        as: 'vak',
+        attributes: ['id', 'naam']
       }
     ]
-  })
+  }
+  )
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
-<<<<<<< HEAD
-        message: err.message || "Some error occurred while retrieving Vraags."
-=======
         message: err.message || "Some error occurred while retrieving Vragen."
->>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
       });
     });
 };
@@ -96,23 +96,23 @@ exports.findOne = (req, res) => {
     include: [
       {
         model: Docent,
-        as: 'docentData',
-        attributes: ['id', 'name']
+        as: 'docent',
+        attributes: ['id', 'naam']
       },
       {
         model: Type,
-        as: 'typeData',
-        attributes: ['id', 'name']
+        as: 'type',
+        attributes: ['id', 'naam']
       },
       {
         model: Topic,
-        as: 'topicData',
-        attributes: ['id', 'name']
+        as: 'topic',
+        attributes: ['id', 'naam']
       },
       {
         model: Vak,
-        as: 'vakData',
-        attributes: ['id', 'name']
+        as: 'vak',
+        attributes: ['id', 'naam']
       }
     ]
   })
@@ -182,39 +182,23 @@ exports.delete = (req, res) => {
     });
 };
 
-<<<<<<< HEAD
-// Delete all Vraags from the database.
-=======
 // Delete all Vragen from the database.
->>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
 exports.deleteAll = (req, res) => {
   Vraag.destroy({
     where: {},
     truncate: false
   })
     .then(nums => {
-<<<<<<< HEAD
-      res.send({ message: `${nums} Vraags were deleted successfully!` });
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while removing all Vraags."
-=======
       res.send({ message: `${nums} Vragen were deleted successfully!` });
     })
     .catch(err => {
       res.status(500).send({
         message: err.message || "Some error occurred while removing all Vragen."
->>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
       });
     });
 };
 
-<<<<<<< HEAD
-// Find all published Vraags by docentId
-=======
 // Find all published Vragen by docentId
->>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
 exports.findAllByDocentId = (req, res) => {
   const docentId = req.params.id;
 
@@ -223,23 +207,23 @@ exports.findAllByDocentId = (req, res) => {
     include: [
       {
         model: Docent,
-        as: 'docentData',
-        attributes: ['id', 'name']
+        as: 'docent',
+        attributes: ['id', 'naam']
       },
       {
         model: Type,
-        as: 'typeData',
-        attributes: ['id', 'name']
+        as: 'type',
+        attributes: ['id', 'naam']
       },
       {
         model: Topic,
-        as: 'topicData',
-        attributes: ['id', 'name']
+        as: 'topic',
+        attributes: ['id', 'naam']
       },
       {
         model: Vak,
-        as: 'vakData',
-        attributes: ['id', 'name']
+        as: 'vak',
+        attributes: ['id', 'naam']
       }
     ]
   })
@@ -248,11 +232,7 @@ exports.findAllByDocentId = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-<<<<<<< HEAD
-        message: err.message || "Some error occurred while retrieving Vraags."
-=======
         message: err.message || "Some error occurred while retrieving Vragen."
->>>>>>> be67cf2da46c3f5a500295bb7f2277decb98a195
       });
     });
 };

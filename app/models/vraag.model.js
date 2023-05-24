@@ -1,4 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
+  const Docent = require("./docent.model");
+  const Type = require("./type.model");
+  const Topic = require("./topic.model");
+  const Vak = require("./vak.model");
   const Vraag = sequelize.define("vraag", {
     naam: {
       type: Sequelize.STRING
@@ -35,15 +39,19 @@ module.exports = (sequelize, Sequelize) => {
   Vraag.associate = (models) => {
     Vraag.belongsTo(models.Type, {
       foreignKey: "typeId",
-      as: "typeData"
+      as: "type"
     });
     Vraag.belongsTo(models.Topic, {
       foreignKey: "topicId",
-      as: "topicData"
+      as: "topic"
     });
     Vraag.belongsTo(models.Vak, {
       foreignKey: "vakId",
-      as: "vakData"
+      as: "vak"
+    });
+    Vraag.belongsTo(models.Docent, {
+      foreignKey: "docentId",
+      as: "docent"
     });
   };
 
