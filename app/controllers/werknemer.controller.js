@@ -162,7 +162,7 @@ exports.deleteAll = (req, res) => {
 
 // Find all Werknemers of a specific bedrijf
 exports.findAllByBedrijfId = (req, res) => {
-  const bedrijfId = req.params.bedrijfId;
+  const bedrijfId = req.params.id;
 
   Werknemer.findAll({
     where: { bedrijfId: bedrijfId }, 
@@ -181,4 +181,17 @@ exports.findAllByBedrijfId = (req, res) => {
         message: err.message || "Some error occurred while retrieving Werknemers."
       });
     });
+};
+
+exports.findByEmail = (req, res) => {
+  Werknemer.findAll({ where: email ? { email: { [Op.like]: `%${email}%` } } : null })
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while retrieving Werknemers."
+    });
+  });
 };

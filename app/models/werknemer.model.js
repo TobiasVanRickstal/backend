@@ -5,13 +5,6 @@ module.exports = (sequelize, Sequelize) => {
       naam: {
         type: Sequelize.STRING
       },
-      docent: {
-        type: Sequelize.INTEGER,
-        // references: {
-        //     model: 'docents', // 'fathers' refers to table name
-        //     key: 'id', // 'id' refers to column name in fathers table
-        // }
-      },
       email: {
         type: Sequelize.STRING
       },

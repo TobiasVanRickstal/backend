@@ -33,9 +33,9 @@ app.get("/", (req, res) => {
 const db = require("./app/models");
 
 // TODO RESET DATABASE
-// db.sequelize.sync({ force: true }).then(() => {
-//   console.log("Drop and re-sync db.");
-// });
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
 // db.sequelize.query('DROP TABLE IF EXISTS bedrijfs')
 //   .then(() => {

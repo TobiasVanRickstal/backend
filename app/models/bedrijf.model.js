@@ -5,14 +5,17 @@ module.exports = (sequelize, Sequelize) => {
       naam: {
         type: Sequelize.STRING
       },
-      mail: {
+      email: {
         type: Sequelize.STRING
       },
       BTW: {
         type: Sequelize.STRING
       },
+      beschrijving: {
+        type: Sequelize.STRING
+      },
       address: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       abbonement: {
         type: Sequelize.INTEGER

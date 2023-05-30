@@ -15,7 +15,7 @@ exports.create = (req, res) => {
   // Create a bedrijf
   const bedrijf = {
     naam: req.body.naam,
-    mail: req.body.mail,
+    email: req.body.email,
     BTW: req.body.BTW,
     address: req.body.address,
     abbonement: req.body.abbonement

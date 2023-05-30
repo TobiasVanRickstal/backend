@@ -11,7 +11,9 @@ module.exports = app => {
   
     // Retrieve all published werknemers
     // router.get("/werknemer-docent/:id", werknemers.findAllByDocentId);
-  
+    router.get("/:email", werknemers.findByEmail);
+
+    router.get("/bedrijven/:id/werknemers", werknemers.findAllByBedrijfId);
     // Retrieve a single Tutorial with id
     router.get("/:id", werknemers.findOne);
   
