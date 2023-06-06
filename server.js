@@ -57,6 +57,7 @@ require("./app/routes/bedrijf.routes")(app);
 require("./app/routes/type.routes")(app);
 require("./app/routes/topic.routes")(app);
 require("./app/routes/vak.routes")(app);
+require("./app/routes/vak.routes")(app);
 
 
 // set port, listen for requests

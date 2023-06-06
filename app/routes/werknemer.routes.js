@@ -1,6 +1,6 @@
 module.exports = app => {
     const werknemers = require("../controllers/werknemer.controller.js");
-  
+    const db = require("../models");
     var router = require("express").Router();
   
     // Create a new Tutorial
@@ -11,7 +11,7 @@ module.exports = app => {
   
     // Retrieve all published werknemers
     // router.get("/werknemer-docent/:id", werknemers.findAllByDocentId);
-    router.get("/:email", werknemers.findByEmail);
+    router.get("/email", werknemers.findByEmail);
 
     router.get("/bedrijven/:id/werknemers", werknemers.findAllByBedrijfId);
     // Retrieve a single Tutorial with id

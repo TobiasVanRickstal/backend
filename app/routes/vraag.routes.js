@@ -23,6 +23,10 @@ module.exports = app => {
   
     // Retrieve all vragen by docentId
     router.get("/docenten/:id/vragen", vragen.findAllByDocentId);
+
+    router.get("/werknemers/:id/vragen", vragen.findAllByWerknemerId);
+
+    router.get("/bedrijven/:id/vragen", vragen.findAllByBedrijfId);
   
     app.use('/api/vragen', router);
   };

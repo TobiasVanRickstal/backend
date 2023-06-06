@@ -1,8 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
-  const Docent = require("./docent.model");
-  const Type = require("./type.model");
-  const Topic = require("./topic.model");
-  const Vak = require("./vak.model");
+  // const Docent = require("./docent.model");
+  // const Type = require("./type.model");
+  // const Topic = require("./topic.model");
+  // const Vak = require("./vak.model");
   const Vraag = sequelize.define("vraag", {
     naam: {
       type: Sequelize.STRING
@@ -52,6 +52,14 @@ module.exports = (sequelize, Sequelize) => {
     Vraag.belongsTo(models.Docent, {
       foreignKey: "docentId",
       as: "docent"
+    });
+    Vraag.belongsTo(models.Bedrijf, {
+      foreignKey: "bedrijfId",
+      as: "bedrijf"
+    });
+    Vraag.belongsTo(models.Werknemer, {
+      foreignKey: "werknemerId",
+      as: "werknemer"
     });
   };
 

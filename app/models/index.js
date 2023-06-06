@@ -26,16 +26,26 @@ db.werknemers = require("./werknemer.model.js")(sequelize, Sequelize);
 db.types = require("./type.model.js")(sequelize, Sequelize);
 db.topics = require("./topic.model.js")(sequelize, Sequelize);
 db.vaks = require("./vak.model.js")(sequelize, Sequelize);
-
-// const Vraag = require("./vraag.model");
-// const Docent = require("./docent.model");
-// const Type = require("./type.model");
-// const Topic = require("./topic.model");
-// const Vak = require("./vak.model");
+db.aanbods = require("./aanbod.model.js")(sequelize, Sequelize);
 
 // Define associations between models
 db.docents.hasMany(db.vragen, { foreignKey: "docentId", as: "vragen" });
 db.vragen.belongsTo(db.docents, { foreignKey: "docentId", as: "docent" });
+
+db.docents.hasMany(db.aanbods, { foreignKey: "docentId", as: "aanbods" });
+db.aanbods.belongsTo(db.docents, { foreignKey: "docentId", as: "docent" });
+
+db.werknemers.hasMany(db.aanbods, { foreignKey: "werknemerId", as: "aanbods" });
+db.aanbods.belongsTo(db.werknemers, { foreignKey: "werknemerId", as: "werknemer" });
+
+db.bedrijven.hasMany(db.aanbods, { foreignKey: "bedrijfId", as: "aanbods" });
+db.aanbods.belongsTo(db.bedrijven, { foreignKey: "bedrijfId", as: "bedrijf" });
+
+db.werknemers.hasMany(db.vragen, { foreignKey: "werknemerId", as: "vragen" });
+db.vragen.belongsTo(db.werknemers, { foreignKey: "werknemerId", as: "werknemer" });
+
+db.bedrijven.hasMany(db.vragen, { foreignKey: "bedrijfId", as: "vragen" });
+db.vragen.belongsTo(db.bedrijven, { foreignKey: "bedrijfId", as: "bedrijf" });
 
 db.bedrijven.hasMany(db.werknemers, { foreignKey: "bedrijfId", as: "werknemers" });
 db.werknemers.belongsTo(db.bedrijven, { foreignKey: "bedrijfId", as: "bedrijf" });

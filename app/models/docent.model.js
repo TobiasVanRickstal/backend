@@ -18,6 +18,10 @@ module.exports = (sequelize, Sequelize) => {
         foreignKey: 'docentId',
         as: 'vragen',
       });
+      Docent.hasMany(models.Aanbod, {
+        foreignKey: 'docentId',
+        as: 'aanbods',
+      });
     };
   
     return Docent;

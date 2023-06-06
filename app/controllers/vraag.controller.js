@@ -4,6 +4,8 @@ const Docent = db.docents;
 const Topic = db.topics;
 const Type = db.types;
 const Vak = db.vaks;
+const Bedrijf = db.bedrijven;
+const Werknemer = db.werknemers;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new vraag
@@ -31,6 +33,8 @@ exports.create = (req, res) => {
     views: req.body.views,
     solicitanten: req.body.solicitanten,
     prijs: req.body.prijs,
+    bedrijfId: req.body.bedrijfId,
+    werknemerId: req.body.werknemerId,
     serie: req.body.serie ? req.body.serie : false,
   };
 
@@ -58,6 +62,16 @@ exports.findAll = (req, res) => {
       {
         model: Docent,
         as: 'docent',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Bedrijf,
+        as: 'bedrijf',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Werknemer,
+        as: 'werknemer',
         attributes: ['id', 'naam']
       },
       {
@@ -97,6 +111,16 @@ exports.findOne = (req, res) => {
       {
         model: Docent,
         as: 'docent',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Bedrijf,
+        as: 'bedrijf',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Werknemer,
+        as: 'werknemer',
         attributes: ['id', 'naam']
       },
       {
@@ -208,6 +232,112 @@ exports.findAllByDocentId = (req, res) => {
       {
         model: Docent,
         as: 'docent',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Bedrijf,
+        as: 'bedrijf',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Werknemer,
+        as: 'werknemer',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Type,
+        as: 'type',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Topic,
+        as: 'topic',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Vak,
+        as: 'vak',
+        attributes: ['id', 'naam']
+      }
+    ]
+  })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving Vragen."
+      });
+    });
+};
+
+exports.findAllByBedrijfId = (req, res) => {
+  const bedrijfId = req.params.id;
+
+  Vraag.findAll({ 
+    where: { bedrijfId: bedrijfId },
+    include: [
+      {
+        model: Docent,
+        as: 'docent',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Bedrijf,
+        as: 'bedrijf',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Werknemer,
+        as: 'werknemer',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Type,
+        as: 'type',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Topic,
+        as: 'topic',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Vak,
+        as: 'vak',
+        attributes: ['id', 'naam']
+      }
+    ]
+  })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving Vragen."
+      });
+    });
+};
+
+exports.findAllByWerknemerId = (req, res) => {
+  const werknemerId = req.params.id;
+
+  Vraag.findAll({ 
+    where: { werknemerId: werknemerId },
+    include: [
+      {
+        model: Docent,
+        as: 'docent',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Bedrijf,
+        as: 'bedrijf',
+        attributes: ['id', 'naam']
+      },
+      {
+        model: Werknemer,
+        as: 'werknemer',
         attributes: ['id', 'naam']
       },
       {

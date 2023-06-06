@@ -41,6 +41,8 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     const naam = req.query.naam;
     var condition = naam ? { naam: { [Op.like]: `%${naam}%` } } : null;
+    const email = req.query.email;
+    var condition = email ? { email: { [Op.like]: `%${email}%` } } : null;
   
     Werknemer.findAll({
       where: condition,
@@ -68,7 +70,6 @@ exports.findOne = (req, res) => {
     const id = req.params.id;
 
     Werknemer.findByPk(id,{
-      where: condition,
       include: [
         {
           model: Bedrijf,

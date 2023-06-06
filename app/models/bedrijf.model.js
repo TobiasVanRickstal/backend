@@ -29,6 +29,18 @@ module.exports = (sequelize, Sequelize) => {
           as: "werknemers"
         }
       });
+      Bedrijf.hasMany(models.Aanbod, {
+        foreignKey: {
+          name: 'bedrijfId',
+          as: "aanbods"
+        }
+      });
+      Bedrijf.hasMany(models.Vraag, {
+        foreignKey: {
+          name: 'bedrijfId',
+          as: "vraags"
+        }
+      });
     };
 
     return Bedrijf;
