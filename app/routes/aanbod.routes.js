@@ -11,7 +11,7 @@ module.exports = app => {
   
     // Retrieve a single vraag by id
     router.get("/:id", aanbods.findOne);
-  
+    
     // Update a vraag by id
     router.put("/:id", aanbods.update);
   

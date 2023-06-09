@@ -33,9 +33,9 @@ app.get("/", (req, res) => {
 const db = require("./app/models");
 
 // TODO RESET DATABASE
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
+// db.sequelize.sync({ force: true }).then(() => {
+//   console.log("Drop and re-sync db.");
+// });
 
 // db.sequelize.query('DROP TABLE IF EXISTS bedrijfs')
 //   .then(() => {
@@ -57,7 +57,7 @@ require("./app/routes/bedrijf.routes")(app);
 require("./app/routes/type.routes")(app);
 require("./app/routes/topic.routes")(app);
 require("./app/routes/vak.routes")(app);
-require("./app/routes/vak.routes")(app);
+require("./app/routes/aanbod.routes")(app);
 
 
 // set port, listen for requests

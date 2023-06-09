@@ -2,7 +2,7 @@ const db = require("../models");
 const Aanbod = db.aanbods;
 const Docent = db.docents;
 const Werknemer = db.werknemers;
-const Bedrijf = db.bedrijfs;
+const Bedrijf = db.bedrijven;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new aanbod
