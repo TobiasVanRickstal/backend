@@ -18,10 +18,10 @@ exports.create = (req, res) => {
   const werknemer = {
     naam: req.body.naam,
     email: req.body.email,
-    password: req.body.password,
     admin: req.body.admin ? req.body.admin : false,
-    extern: req.body.extern ? req.body.extern : false,
-    bedrijfId: req.body.bedrijfId
+    bedrijfId: req.body.bedrijfId,
+    telefoon:  req.body.telefoon,
+    specialisatie:  req.body.specialisatie
   };
 
   // Save werknemer in the database

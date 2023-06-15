@@ -14,6 +14,9 @@ module.exports = (sequelize, Sequelize) => {
       specialisatie: {
         type: Sequelize.STRING
       },
+      admin: {
+        type: Sequelize.BOOLEAN
+      },
     });
     
     Werknemer.associate = (models) => {
