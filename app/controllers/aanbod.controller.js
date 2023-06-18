@@ -248,10 +248,10 @@ exports.findAllByWerknemerId = (req, res) => {
       });
   };
   exports.findAllByBedrijfId = (req, res) => {
-    const bedrijfId = req.params.id;
+    const bedrijf = req.params.id;
   
     Aanbod.findAll({ 
-      where: { bedrijfId: bedrijfId },
+      where: { bedrijfId: bedrijf },
       include: [
           {
               model: Docent,
